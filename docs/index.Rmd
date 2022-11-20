@@ -1,45 +1,56 @@
 ---
-title: "Your A4 Report Title (TODO: Revise title)"
-author: "Your Name"
-date: '2022-11-01'
+title: "Incarceration Inequalities"
+author: "Vincent Kao"
+date: '2022-11-19'
 output: html_document
 ---
 
-```{r echo=FALSE, eval=TRUE, message=FALSE}
+```{r echo = FALSE, eval = TRUE, message = FALSE}
+# source files
 source("../source/a4-helpers.R")
 source("../source/analysis.R")
 ```
 
 ## Abstract 
-[TODO: Include a short abstract (about 50 words)]
+This project will look to dive into the racism in the American prison system by looking at incarceration data. This is important as people of color are now disproportionately being jailed as a result of mixed causes. Through visualizing this inequality, we hope that we can shine light onto this problem and foster change.
 
-# Test (TODO: Remove before submission!!)
-```{r echo=FALSE}
-q1_string <- test_query1()
-num <- 5
-```
-As you know, this is a markdown report. The [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) is **useful!**
-
-* Here's a test of a dynamic variable. Say **"`r q1_string`!!!** 
-* Here's another test. A vector
-of numbers: `r test_query2(num)`.
-
-Recall that _{r echo=TRUE}_ can be used to display the code, 
-which is very useful when developing and debugging a report. Here's an example: 
-
-```{r echo=TRUE}
-num <- 5
-sum <- sum(test_query2(num))
-print(sum)
-```
 
 ## Introduction 
-[TODO]
+Criminals should be incarcerated, it is only right and just that one is punished if they violates rules of society, right? But what happens when the power system in place puts people in prison, but in an unfair and oppressive manner? America has faced this issue forever, even today. With current and recent laws and political structures, more and more people are being put behind bars, and people of color and minorities are still being locked up at a higher rate. Some people might think that the solution is simple. Just don't break the law and you will not be sent to jail. However, the problem is much more complicated than that. The stakeholders does not just include the police and the incarcerated. Intricate yet oppressive systems are in place, working together, where it becomes beneficial to incarcerate more people, which further worsen the problem of locking up innocent people. And this project looks to find just how unequally that different groups of people are being incarcerated.
+
 
 ## Data Summary 
-[TODO]
+How much more are people being incarcerated? Investigating the jail rate can help us answer this question. Jail rate is the number of people that are in jail per 100,000 people. In 1978, the total national jail rate was `r sum_info$tot_jr_1978`, that number more than quitupled and grew to `r sum_info$tot_jr_2018` in 2018. This drastic increase in jail rate does not make sense, since it is unlikely that the number of criminals have gone up by so much. There must be other reasons for this inflation, and it is important for us to understand what they may be so that the number does not keep on increasing. What else can we know about the current incarceration system with so many more people being put in jail? Looking at the data, we can see clear evidence for inequalities. As, staying in 2018, the jail rate for white people was `r sum_info$white_jr_2018`, lower than the national average, whereasthe jail rate for black people was `r sum_info$black_jr_2018`, alarmingly higher than even the national average. These numbers
+are so disproportionate that it is clear the current system is oppressive for black people, which is an issue that needs to be further investigated.
 
-[TODO ... other sections ... See Canvas for details]
 
-_All the very best with your work!_
+## Growth of the U.S. Prison Population
+``` {r, echo = FALSE}
+plot_jail_pop_for_us()
+```
 
+By how much has the total jail population of the U.S. increased since 1970? In 1970, around 150,000 people were in jail, that number doubled by 1990, and then doubled again in 2010, reaching around 750,000 to 800,000. The rate of increase seems to have stopped since the mid-2000s, however, there is no clear sign for the jail population to drop.
+
+
+## Growth of Prison Population by State
+``` {r, echo = FALSE, message = FALSE}
+plot_jail_pop_by_states(c("WA", "CA", "TX", "FL", "AK"))
+```
+
+Does this trend of increase in jail population apply to individual states as well? Absolutely. I chose to show Washington as it is the state I live in currently, and I chose California, Texas, and Florida as they are the U.S. states with the highest populations, and they have a significant higher increase in jail population compared to Washington. I also included Alaska as an outlier, as the state's population and jail population is so small that no changes can be seen on the chart.
+
+
+## Black Population Proportion vs Jail Rate by State in 2018
+``` {r, echo = FALSE, warning = FALSE}
+plot_bpp_vs_jr()
+```
+
+From the data summary, the jail rate for black people is significantly higher than that for white people. Does that mean that jail rate will increase when there's a higher proportion of black population? The chart above shows jail rate and proportion of black population. Each dot represents a different state. There is a weak correlation between the two variables. While we can say that it is likely that the state's jail rate is higher when the black population proportion is higher, it is not a definitive yes in all cases. There are a fair share of states with high jail rate despite of low black population proportion and vice versa.
+
+
+## Proportion of Black Inmates By State Map in 2018
+``` {r, echo = FALSE, message = FALSE}
+plot_jail_map()
+```
+
+The majority of population in America is still white people. However, according to the data summary, black people are being put into jail at a much higher rate than white people. Just how does the jail population for each state look like? And how does it compare to the American population as a whole? From the map above, we can see that most states in Western America have around 20% of inmate population being black, while some states in (south)eastern America see that number go closer to 70-80%. However, only less than 15% of population is black in America in 2018 according to [Census.gov](https://www.census.gov/quickfacts/fact/table/US/PST045221). This is further evidence for patterns of inequality in our incarceration system that is a major issue for people of color.

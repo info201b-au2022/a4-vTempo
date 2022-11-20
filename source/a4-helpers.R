@@ -5,8 +5,8 @@ library(tidyverse)
 # This function returns the incarceration data as a dataframe
 # Note: The CSV file is stored on my local machine to speed load times
 #---------------------------------------------------------------------------#
-get_data <- function(num_records=-1) {
-  fname <- "~/Documents/info201/data/incarceration_trends.csv"
+get_data <- function(num_records = -1) {
+  fname <- "../data/incarceration_trends.csv"
   df <- read.csv(fname, nrows=num_records)
   return(df)
 }
@@ -153,7 +153,7 @@ get_basic_info <- function(df) {
 # incarceration_df <- get_data()
 # 
 # ## Demonstrate use of the functions
-# ## Each of these functions returns a vector of states
+# ## Each of these functions retursns a vector of states
 # states_in_region("South")
 # states_in_division("Pacific")
 # states_in_region_or_division("South")        
